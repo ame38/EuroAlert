@@ -1,0 +1,7 @@
+<resources>
+    <color name="alert_orange_500">#FFED6C02</color>
+    <color name="alert_orange_700">#FFB74D00</color>
+    <color name="alert_red_500">#FFD32F2F</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
