@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">EuroAlert</string>
     <string name="status_placeholder">No checks run yet.</string>
+    <string name="location_permission_denied">Location permission is needed to check what\'s near you.</string>
 </resources>
