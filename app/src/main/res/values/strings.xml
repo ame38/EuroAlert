@@ -2,4 +2,8 @@
     <string name="app_name">EuroAlert</string>
     <string name="status_placeholder">No checks run yet.</string>
     <string name="location_permission_denied">Location permission is needed to check what\'s near you.</string>
+    <string name="no_last_location">No location fix yet, try again in a bit.</string>
+    <string name="checking_status">Checking…</string>
+    <string name="no_alerts_nearby">Nothing nearby right now.</string>
+    <string name="alerts_nearby_count">%d alert(s) nearby.</string>
 </resources>
