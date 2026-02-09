@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private val requestLocationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             if (granted) {
-                statusText.setText(R.string.status_placeholder)
+                runChecks()
             } else {
                 statusText.setText(R.string.location_permission_denied)
             }
@@ -30,9 +30,33 @@ class MainActivity : AppCompatActivity() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
         ) {
-            statusText.setText(R.string.status_placeholder)
+            runChecks()
         } else {
             requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
+    }
+
+    private fun runChecks() {
+        val location = LocationHelper.lastKnownLocation(this)
+        if (location == null) {
+            statusText.setText(R.string.no_last_location)
+            return
+        }
+
+        statusText.setText(R.string.checking_status)
+
+        Thread {
+            val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(location.latitude, location.longitude)
+            val earthquakes = AlertsRepository.nearbyEarthquakes(location.latitude, location.longitude)
+            val total = weatherAlerts.size + earthquakes.size
+
+            runOnUiThread {
+                statusText.text = if (total == 0) {
+                    getString(R.string.no_alerts_nearby)
+                } else {
+                    getString(R.string.alerts_nearby_count, total)
+                }
+            }
+        }.start()
     }
 }
