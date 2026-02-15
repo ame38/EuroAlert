@@ -11,7 +11,7 @@ import org.json.JSONObject
  */
 object AlertRuleRepository {
 
-    private const val PREFS = "alert_rules"
+    private const val PREFS_NAME = "alert_rules"
     private const val KEY_RULES = "rules_json"
 
     fun loadRules(context: Context): List<AlertRule> {
@@ -45,5 +45,5 @@ object AlertRuleRepository {
     )
 
     private fun prefs(context: Context) =
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 }
