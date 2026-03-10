@@ -6,4 +6,6 @@
     <string name="checking_status">Checking…</string>
     <string name="no_alerts_nearby">Nothing nearby right now.</string>
     <string name="alerts_nearby_count">%d alert(s) nearby.</string>
+    <string name="notification_channel_name">Nearby alerts</string>
+    <string name="alert_notification_title">Alert near you</string>
 </resources>
