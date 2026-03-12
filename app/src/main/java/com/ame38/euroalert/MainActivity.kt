@@ -2,6 +2,7 @@ package com.ame38.euroalert
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,11 +22,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    // just so the worker's notification can actually show, we don't do
+    // anything special if this gets denied, the checks still run either way
+    private val requestNotificationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         statusText = findViewById(R.id.statusText)
+        NotificationHelper.createChannel(this)
+        requestNotificationPermissionIfNeeded()
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
@@ -33,6 +41,16 @@ class MainActivity : AppCompatActivity() {
             runChecks()
         } else {
             requestLocationPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+    }
+
+    private fun requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
 
