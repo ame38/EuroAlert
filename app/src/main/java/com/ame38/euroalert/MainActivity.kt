@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         statusText = findViewById(R.id.statusText)
         NotificationHelper.createChannel(this)
         requestNotificationPermissionIfNeeded()
+        CheckScheduler.schedulePeriodicCheck(this)
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
