@@ -1,9 +1,11 @@
 package com.ame38.euroalert
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         NotificationHelper.createChannel(this)
         requestNotificationPermissionIfNeeded()
         CheckScheduler.schedulePeriodicCheck(this)
+
+        findViewById<Button>(R.id.viewAlertsButton).setOnClickListener {
+            startActivity(Intent(this, AlertsActivity::class.java))
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
