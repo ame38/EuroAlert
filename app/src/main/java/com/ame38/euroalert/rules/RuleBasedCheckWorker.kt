@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.ame38.euroalert.LocationHelper
 import com.ame38.euroalert.MeteoalarmClient
+import com.ame38.euroalert.NotificationHelper
 
 /**
  * Background check that evaluates every enabled rule, instead of the
@@ -23,7 +24,9 @@ class RuleBasedCheckWorker(
         val alerts = MeteoalarmClient.fetchActiveAlerts()
         alerts.forEach { alert ->
             val matched = RuleEvaluator.matchingRules(alert, location.latitude, location.longitude, rules)
-            // notifying on match lands in a follow-up commit
+            matched.firstOrNull()?.let { rule ->
+                NotificationHelper.showAlert(applicationContext, "${rule.name}: ${alert.event}", alert.headline)
+            }
         }
         return Result.success()
     }
