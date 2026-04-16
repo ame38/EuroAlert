@@ -4,18 +4,33 @@ import android.content.Context
 import com.ame38.euroalert.Severity
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.UUID
 
 /**
  * Stores the user's alert rules as a JSON array in SharedPreferences.
- * No default rules yet - that lands in a follow-up commit.
  */
 object AlertRuleRepository {
+
+    private fun defaultRules(): List<AlertRule> = listOf(
+        AlertRule(
+            id = UUID.randomUUID().toString(),
+            name = "Severe weather nearby",
+            category = AlertCategory.SEVERE_WEATHER,
+            minSeverity = Severity.MODERATE,
+            radiusKm = 50
+        )
+    )
 
     private const val PREFS_NAME = "alert_rules"
     private const val KEY_RULES = "rules_json"
 
     fun loadRules(context: Context): List<AlertRule> {
-        val raw = prefs(context).getString(KEY_RULES, null) ?: return emptyList()
+        val raw = prefs(context).getString(KEY_RULES, null)
+        if (raw == null) {
+            val seeded = defaultRules()
+            saveRules(context, seeded)
+            return seeded
+        }
         val array = JSONArray(raw)
         return (0 until array.length()).map { i -> ruleFromJson(array.getJSONObject(i)) }
     }
