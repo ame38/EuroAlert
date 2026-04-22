@@ -21,18 +21,29 @@ import java.util.UUID
 fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
     var name by remember { mutableStateOf("") }
     var radius by remember { mutableStateOf("50") }
+    var error by remember { mutableStateOf<String?>(null) }
 
     Column(modifier = Modifier.padding(16.dp)) {
         OutlinedTextField(value = name, onValueChange = { name = it }, label = { Text("Rule name") })
         OutlinedTextField(value = radius, onValueChange = { radius = it }, label = { Text("Radius (km)") })
+        error?.let { Text(it) }
         Button(onClick = {
+            val radiusValue = radius.toIntOrNull()
+            if (name.isBlank()) {
+                error = "Name can't be empty"
+                return@Button
+            }
+            if (radiusValue == null || radiusValue !in 1..500) {
+                error = "Radius must be between 1 and 500 km"
+                return@Button
+            }
             onSave(
                 AlertRule(
                     id = UUID.randomUUID().toString(),
                     name = name,
                     category = AlertCategory.SEVERE_WEATHER,
                     minSeverity = Severity.MODERATE,
-                    radiusKm = radius.toIntOrNull() ?: 50
+                    radiusKm = radiusValue
                 )
             )
         }) {
