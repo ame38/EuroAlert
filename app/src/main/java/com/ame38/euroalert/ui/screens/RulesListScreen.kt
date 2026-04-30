@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ame38.euroalert.rules.AlertRule
 
+// onToggle must persist immediately - it used to only update the in-memory
+// list, so a toggle would revert after leaving the screen
 @Composable
 fun RulesListScreen(
     rules: List<AlertRule>,
