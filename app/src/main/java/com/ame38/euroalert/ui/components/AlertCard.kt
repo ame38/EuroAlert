@@ -14,6 +14,7 @@ import com.ame38.euroalert.WeatherAlert
 import com.ame38.euroalert.ui.theme.AlertOrange
 import com.ame38.euroalert.ui.theme.AlertRed
 import com.ame38.euroalert.ui.theme.AlertYellow
+import androidx.compose.ui.tooling.preview.Preview
 
 private fun colorFor(severity: Severity): Color = when (severity) {
     Severity.MINOR -> AlertYellow
@@ -29,4 +30,12 @@ fun AlertCard(alert: WeatherAlert) {
             Text(alert.headline, style = MaterialTheme.typography.bodyMedium)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AlertCardPreview() {
+    AlertCard(
+        WeatherAlert("p1", "ES", "Heat wave", Severity.SEVERE, "Extreme heat expected", 40.0, -3.0)
+    )
 }
