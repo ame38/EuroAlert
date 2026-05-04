@@ -10,8 +10,11 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ame38.euroalert.rules.AlertRule
+import com.ame38.euroalert.rules.AlertCategory
+import com.ame38.euroalert.Severity
 
 // onToggle must persist immediately - it used to only update the in-memory
 // list, so a toggle would revert after leaving the screen
@@ -28,4 +31,15 @@ fun RulesListScreen(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RulesListScreenPreview() {
+    RulesListScreen(
+        rules = listOf(
+            AlertRule("1", "Severe weather nearby", AlertCategory.SEVERE_WEATHER, Severity.MODERATE, 50)
+        ),
+        onToggle = { _, _ -> }
+    )
 }
