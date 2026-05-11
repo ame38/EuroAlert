@@ -9,4 +9,11 @@
     <string name="notification_channel_name">Nearby alerts</string>
     <string name="alert_notification_title">Alert near you</string>
     <string name="view_alerts">View alerts</string>
+    <string name="radius_label">Alert me within:</string>
+    <string name="radius_25">25 km</string>
+    <string name="radius_50">50 km</string>
+    <string name="radius_100">100 km</string>
+    <string name="radius_200">200 km</string>
+    <string name="mute_notifications">Mute notifications</string>
+    <string name="open_settings">Settings</string>
 </resources>
