@@ -1,8 +1,11 @@
 package com.ame38.euroalert.ui.screens
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +26,12 @@ fun RulesListScreen(
     rules: List<AlertRule>,
     onToggle: (AlertRule, Boolean) -> Unit
 ) {
+    if (rules.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text("No rules yet - add one to start getting alerts.")
+        }
+        return
+    }
     LazyColumn {
         items(rules) { rule ->
             Row(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
