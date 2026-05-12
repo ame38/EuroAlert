@@ -24,7 +24,8 @@ import com.ame38.euroalert.Severity
 @Composable
 fun RulesListScreen(
     rules: List<AlertRule>,
-    onToggle: (AlertRule, Boolean) -> Unit
+    onToggle: (AlertRule, Boolean) -> Unit,
+    onDelete: (AlertRule) -> Unit
 ) {
     if (rules.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -37,6 +38,7 @@ fun RulesListScreen(
             Row(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
                 Text(rule.name, style = MaterialTheme.typography.titleMedium)
                 Switch(checked = rule.enabled, onCheckedChange = { onToggle(rule, it) })
+                IconButtonDelete(onClick = { onDelete(rule) })
             }
         }
     }
@@ -49,6 +51,7 @@ fun RulesListScreenPreview() {
         rules = listOf(
             AlertRule("1", "Severe weather nearby", AlertCategory.SEVERE_WEATHER, Severity.MODERATE, 50)
         ),
-        onToggle = { _, _ -> }
+        onToggle = { _, _ -> },
+        onDelete = {}
     )
 }
