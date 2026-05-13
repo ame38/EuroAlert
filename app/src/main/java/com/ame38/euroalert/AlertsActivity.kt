@@ -31,9 +31,9 @@ class AlertsActivity : AppCompatActivity() {
         }
 
         Thread {
-            val items = AlertsRepository.nearbyWeatherAlerts(location.latitude, location.longitude)
+            val items = AlertsRepository.nearbyWeatherAlerts(this, location.latitude, location.longitude)
                 .map { AlertListItem.from(it) } +
-                AlertsRepository.nearbyEarthquakes(location.latitude, location.longitude)
+                AlertsRepository.nearbyEarthquakes(this, location.latitude, location.longitude)
                     .map { AlertListItem.from(it) }
 
             runOnUiThread {

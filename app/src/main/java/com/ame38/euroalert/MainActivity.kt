@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
         statusText.setText(R.string.checking_status)
 
         Thread {
-            val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(location.latitude, location.longitude)
-            val earthquakes = AlertsRepository.nearbyEarthquakes(location.latitude, location.longitude)
+            val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(this, location.latitude, location.longitude)
+            val earthquakes = AlertsRepository.nearbyEarthquakes(this, location.latitude, location.longitude)
             val total = weatherAlerts.size + earthquakes.size
 
             runOnUiThread {

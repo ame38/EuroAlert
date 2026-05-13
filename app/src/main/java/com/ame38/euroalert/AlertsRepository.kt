@@ -1,19 +1,20 @@
 package com.ame38.euroalert
 
+import android.content.Context
+
 object AlertsRepository {
 
-    // TODO(#8): make this configurable, hardcoded for now
-    private const val DEFAULT_RADIUS_KM = 50.0
-
-    fun nearbyWeatherAlerts(userLat: Double, userLon: Double): List<WeatherAlert> {
+    fun nearbyWeatherAlerts(context: Context, userLat: Double, userLon: Double): List<WeatherAlert> {
+        val radiusKm = AlertPrefs.getRadiusKm(context).toDouble()
         return MeteoalarmClient.fetchActiveAlerts().filter { alert ->
-            GeoUtils.distanceKm(userLat, userLon, alert.latitude, alert.longitude) <= DEFAULT_RADIUS_KM
+            GeoUtils.distanceKm(userLat, userLon, alert.latitude, alert.longitude) <= radiusKm
         }
     }
 
-    fun nearbyEarthquakes(userLat: Double, userLon: Double): List<EarthquakeEvent> {
+    fun nearbyEarthquakes(context: Context, userLat: Double, userLon: Double): List<EarthquakeEvent> {
+        val radiusKm = AlertPrefs.getRadiusKm(context).toDouble()
         return EmscClient.fetchRecentEarthquakes().filter { quake ->
-            GeoUtils.distanceKm(userLat, userLon, quake.latitude, quake.longitude) <= DEFAULT_RADIUS_KM
+            GeoUtils.distanceKm(userLat, userLon, quake.latitude, quake.longitude) <= radiusKm
         }
     }
 }
