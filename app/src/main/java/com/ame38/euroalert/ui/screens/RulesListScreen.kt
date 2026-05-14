@@ -38,7 +38,21 @@ fun RulesListScreen(
             Row(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
                 Text(rule.name, style = MaterialTheme.typography.titleMedium)
                 Switch(checked = rule.enabled, onCheckedChange = { onToggle(rule, it) })
-                IconButtonDelete(onClick = { onDelete(rule) })
+                var confirming by remember { mutableStateOf(false) }
+                IconButtonDelete(onClick = { confirming = true })
+                if (confirming) {
+                    AlertDialog(
+                        onDismissRequest = { confirming = false },
+                        confirmButton = {
+                            TextButton(onClick = { onDelete(rule); confirming = false }) { Text("Delete") }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = { confirming = false }) { Text("Cancel") }
+                        },
+                        title = { Text("Delete rule?") },
+                        text = { Text("${rule.name} will stop matching alerts.") }
+                    )
+                }
             }
         }
     }
