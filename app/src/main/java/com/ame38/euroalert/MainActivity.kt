@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AlertsActivity::class.java))
         }
 
+        findViewById<Button>(R.id.openSettingsButton).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
         ) {
