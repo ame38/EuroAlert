@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radius_label" />
+
+    <RadioGroup
+        android:id="@+id/radiusGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radius25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radius_25" />
+
+        <RadioButton
+            android:id="@+id/radius50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radius_50" />
+
+        <RadioButton
+            android:id="@+id/radius100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radius_100" />
+
+        <RadioButton
+            android:id="@+id/radius200"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radius_200" />
+
+    </RadioGroup>
+
+    <Switch
+        android:id="@+id/muteSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/mute_notifications" />
+
+</LinearLayout>

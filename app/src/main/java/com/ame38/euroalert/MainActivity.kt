@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AlertsActivity::class.java))
         }
 
+        findViewById<Button>(R.id.openSettingsButton).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
             == PackageManager.PERMISSION_GRANTED
         ) {
@@ -71,8 +75,8 @@ class MainActivity : AppCompatActivity() {
         statusText.setText(R.string.checking_status)
 
         Thread {
-            val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(location.latitude, location.longitude)
-            val earthquakes = AlertsRepository.nearbyEarthquakes(location.latitude, location.longitude)
+            val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(this, location.latitude, location.longitude)
+            val earthquakes = AlertsRepository.nearbyEarthquakes(this, location.latitude, location.longitude)
             val total = weatherAlerts.size + earthquakes.size
 
             runOnUiThread {

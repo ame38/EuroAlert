@@ -12,11 +12,11 @@ class AlertCheckWorker(
     override suspend fun doWork(): Result {
         val location = LocationHelper.lastKnownLocation(applicationContext) ?: return Result.retry()
 
-        val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(location.latitude, location.longitude)
-        val earthquakes = AlertsRepository.nearbyEarthquakes(location.latitude, location.longitude)
+        val weatherAlerts = AlertsRepository.nearbyWeatherAlerts(applicationContext, location.latitude, location.longitude)
+        val earthquakes = AlertsRepository.nearbyEarthquakes(applicationContext, location.latitude, location.longitude)
         val total = weatherAlerts.size + earthquakes.size
 
-        if (total > 0) {
+        if (total > 0 && !AlertPrefs.isMuted(applicationContext)) {
             val text = applicationContext.getString(R.string.alerts_nearby_count, total)
             NotificationHelper.showAlert(
                 applicationContext,
