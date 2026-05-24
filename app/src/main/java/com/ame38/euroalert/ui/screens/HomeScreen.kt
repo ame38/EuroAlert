@@ -28,6 +28,9 @@ fun HomeScreen(
         if (locationState is LocationState.Loading) {
             CircularProgressIndicator()
         }
+        if (locationState is LocationState.Denied) {
+            Text("Location permission is needed to check what's near you.")
+        }
         Button(onClick = onViewFeed) { Text("View nearby alerts") }
         Button(onClick = onViewRules) { Text("Manage rules") }
     }
