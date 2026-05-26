@@ -8,5 +8,6 @@ import androidx.compose.ui.unit.sp
 val EuroAlertTypography = Typography(
     titleLarge = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 22.sp),
     titleMedium = TextStyle(fontWeight = FontWeight.Medium, fontSize = 17.sp),
-    bodyMedium = TextStyle(fontWeight = FontWeight.Normal, fontSize = 14.sp)
+    bodyMedium = TextStyle(fontWeight = FontWeight.Normal, fontSize = 14.sp),
+    labelSmall = TextStyle(fontWeight = FontWeight.Normal, fontSize = 11.sp)
 )
