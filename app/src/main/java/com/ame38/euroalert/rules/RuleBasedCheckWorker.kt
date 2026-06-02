@@ -7,6 +7,7 @@ import com.ame38.euroalert.LocationHelper
 import com.ame38.euroalert.MeteoalarmClient
 import com.ame38.euroalert.NotificationHelper
 
+
 /**
  * Background check that evaluates every enabled rule, instead of the
  * single hardcoded severity+radius check AlertCheckWorker does on main.
