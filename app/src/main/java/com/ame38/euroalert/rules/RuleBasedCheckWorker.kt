@@ -22,7 +22,11 @@ class RuleBasedCheckWorker(
         val rules = AlertRuleRepository.loadRules(applicationContext)
         if (rules.isEmpty()) return Result.success()
 
-        val alerts = MeteoalarmClient.fetchActiveAlerts()
+        val alerts = try {
+            MeteoalarmClient.fetchActiveAlerts()
+        } catch (e: Exception) {
+            return Result.retry()
+        }
         alerts.forEach { alert ->
             val matched = RuleEvaluator.matchingRules(alert, location.latitude, location.longitude, rules)
             matched.firstOrNull()?.let { rule ->
