@@ -23,6 +23,7 @@ object AlertRuleRepository {
 
     private const val PREFS_NAME = "alert_rules"
     private const val KEY_RULES = "rules_json"
+    private const val KEY_LAST_CHECK = "last_check_millis"
 
     fun loadRules(context: Context): List<AlertRule> {
         val raw = prefs(context).getString(KEY_RULES, null)
@@ -58,6 +59,13 @@ object AlertRuleRepository {
         radiusKm = obj.getInt("radiusKm"),
         enabled = obj.optBoolean("enabled", true)
     )
+
+    fun setLastCheckTime(context: Context, millis: Long) {
+        prefs(context).edit().putLong(KEY_LAST_CHECK, millis).apply()
+    }
+
+    fun getLastCheckTime(context: Context): Long =
+        prefs(context).getLong(KEY_LAST_CHECK, 0L)
 
     private fun prefs(context: Context) =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

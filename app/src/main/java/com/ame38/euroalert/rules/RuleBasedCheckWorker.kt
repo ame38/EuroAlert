@@ -33,6 +33,7 @@ class RuleBasedCheckWorker(
                 NotificationHelper.showAlert(applicationContext, "${rule.name}: ${alert.event}", alert.headline)
             }
         }
+        AlertRuleRepository.setLastCheckTime(applicationContext, System.currentTimeMillis())
         return Result.success()
     }
 }
