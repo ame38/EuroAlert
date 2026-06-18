@@ -37,7 +37,11 @@ fun RulesListScreen(
         items(rules) { rule ->
             Row(modifier = Modifier.fillMaxWidth().padding(12.dp)) {
                 Text(rule.name, style = MaterialTheme.typography.titleMedium)
-                Switch(checked = rule.enabled, onCheckedChange = { onToggle(rule, it) })
+                Switch(
+                    checked = rule.enabled,
+                    onCheckedChange = { onToggle(rule, it) },
+                    modifier = Modifier
+                )
                 var confirming by remember { mutableStateOf(false) }
                 IconButtonDelete(onClick = { confirming = true })
                 if (confirming) {
