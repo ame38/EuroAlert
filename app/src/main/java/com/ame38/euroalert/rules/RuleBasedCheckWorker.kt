@@ -29,6 +29,8 @@ class RuleBasedCheckWorker(
         }
         alerts.forEach { alert ->
             val matched = RuleEvaluator.matchingRules(alert, location.latitude, location.longitude, rules)
+            // used to notify once per matching rule, which meant duplicate
+            // notifications for the same alert when two rules both matched it
             matched.firstOrNull()?.let { rule ->
                 NotificationHelper.showAlert(applicationContext, "${rule.name}: ${alert.event}", alert.headline)
             }
