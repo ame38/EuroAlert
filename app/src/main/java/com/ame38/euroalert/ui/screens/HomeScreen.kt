@@ -33,6 +33,8 @@ fun HomeScreen(
         }
         Button(onClick = onViewFeed) { Text("View nearby alerts") }
         Button(onClick = onViewRules) { Text("Manage rules") }
+        // TODO: wire this to actually mute the worker, currently just UI
+        Button(onClick = {}) { Text("Mute all") }
     }
 }
 
