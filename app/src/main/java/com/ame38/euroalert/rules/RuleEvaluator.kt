@@ -14,10 +14,13 @@ object RuleEvaluator {
         userLat: Double,
         userLon: Double,
         rules: List<AlertRule>
-    ): List<AlertRule> = rules.filter { rule ->
-        rule.enabled &&
-            rule.category == AlertCategory.SEVERE_WEATHER &&
-            alert.severity >= rule.minSeverity &&
-            GeoUtils.distanceKm(userLat, userLon, alert.latitude, alert.longitude) <= rule.radiusKm
+    ): List<AlertRule> {
+        val distanceKm = GeoUtils.distanceKm(userLat, userLon, alert.latitude, alert.longitude)
+        return rules.filter { rule ->
+            rule.enabled &&
+                rule.category == AlertCategory.SEVERE_WEATHER &&
+                alert.severity >= rule.minSeverity &&
+                distanceKm <= rule.radiusKm
+        }
     }
 }
