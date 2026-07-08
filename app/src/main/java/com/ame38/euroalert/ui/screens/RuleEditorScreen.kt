@@ -12,7 +12,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.ame38.euroalert.rules.AlertCategory
 import com.ame38.euroalert.rules.AlertRule
 import com.ame38.euroalert.Severity
 import java.util.UUID
@@ -43,7 +42,7 @@ fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
                 AlertRule(
                     id = UUID.randomUUID().toString(),
                     name = name,
-                    category = AlertCategory.SEVERE_WEATHER,
+                    category = com.ame38.euroalert.rules.AlertCategory.SEVERE_WEATHER,
                     minSeverity = Severity.MODERATE,
                     radiusKm = radiusValue
                 )
