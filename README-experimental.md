@@ -17,6 +17,13 @@ Not merged into main - kept here to compare the two approaches side by side.
 - State: `AlertsViewModel` with `StateFlow` instead of `runOnUiThread` callbacks
 - minSdk 26 instead of 24
 
+## Screens so far
+
+- Home (status + navigation)
+- Rules list (enable/disable, delete with confirmation)
+- Rule editor (create, with validation)
+- Alerts feed (color-coded by severity)
+
 ## What's the same
 
 - Data sources: still Meteoalarm for severe weather (EMSC earthquake support
