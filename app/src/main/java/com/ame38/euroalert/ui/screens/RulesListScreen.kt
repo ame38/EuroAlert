@@ -40,7 +40,7 @@ fun RulesListScreen(
                 Switch(
                     checked = rule.enabled,
                     onCheckedChange = { onToggle(rule, it) },
-                    modifier = Modifier
+                    modifier = Modifier.padding(horizontal = 4.dp)
                 )
                 var confirming by remember { mutableStateOf(false) }
                 IconButtonDelete(onClick = { confirming = true })
