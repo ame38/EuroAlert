@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,8 +19,8 @@ import java.util.UUID
 
 @Composable
 fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
-    var name by remember { mutableStateOf("") }
-    var radius by remember { mutableStateOf("50") }
+    var name by rememberSaveable { mutableStateOf("") }
+    var radius by rememberSaveable { mutableStateOf("50") }
     var error by remember { mutableStateOf<String?>(null) }
     var saving by remember { mutableStateOf(false) }
 
