@@ -9,6 +9,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import com.ame38.euroalert.ui.viewmodel.LocationState
+import com.ame38.euroalert.ui.theme.Spacing
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,8 +22,8 @@ fun HomeScreen(
     locationState: LocationState = LocationState.Loading
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        modifier = Modifier.fillMaxSize().padding(Spacing.large),
+        verticalArrangement = Arrangement.spacedBy(Spacing.medium)
     ) {
         Text("EuroAlert", style = MaterialTheme.typography.titleLarge)
         if (locationState is LocationState.Loading) {
