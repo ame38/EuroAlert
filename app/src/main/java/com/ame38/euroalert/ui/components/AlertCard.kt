@@ -2,7 +2,9 @@ package com.ame38.euroalert.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +17,10 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun AlertCard(alert: WeatherAlert) {
-    Card(modifier = Modifier.padding(vertical = 4.dp)) {
+    Card(
+        modifier = Modifier.padding(vertical = 4.dp),
+        shape = RoundedCornerShape(12.dp)
+    ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Text(alert.event, style = MaterialTheme.typography.titleMedium, color = severityColor(alert.severity))
             Text(alert.headline, style = MaterialTheme.typography.bodyMedium)
