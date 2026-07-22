@@ -28,7 +28,7 @@ class RuleBasedCheckWorker(
             return Result.retry()
         }
         alerts.forEach { alert ->
-            val matched = RuleEvaluator.matchingRules(alert, location.latitude, location.longitude, rules)
+            val matched: List<AlertRule> = RuleEvaluator.matchingRules(alert, location.latitude, location.longitude, rules)
             // used to notify once per matching rule, which meant duplicate
             // notifications for the same alert when two rules both matched it
             matched.firstOrNull()?.let { rule ->
