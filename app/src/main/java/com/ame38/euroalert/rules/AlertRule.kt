@@ -10,6 +10,7 @@ data class AlertRule(
     val id: String,
     val name: String,
     val category: AlertCategory,
+    /** lowest severity that still counts as a match */
     val minSeverity: Severity,
     val radiusKm: Int,
     val enabled: Boolean = true
