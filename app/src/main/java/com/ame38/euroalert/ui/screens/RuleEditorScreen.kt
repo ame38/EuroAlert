@@ -17,6 +17,9 @@ import com.ame38.euroalert.rules.AlertRule
 import com.ame38.euroalert.Severity
 import java.util.UUID
 
+private const val MIN_RADIUS_KM = 1
+private const val MAX_RADIUS_KM = 500
+
 @Composable
 fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
     var name by rememberSaveable { mutableStateOf("") }
@@ -35,7 +38,7 @@ fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
                 error = "Name can't be empty"
                 return@Button
             }
-            if (radiusValue == null || radiusValue !in 1..500) {
+            if (radiusValue == null || radiusValue !in MIN_RADIUS_KM..MAX_RADIUS_KM) {
                 error = "Radius must be between 1 and 500 km"
                 return@Button
             }
