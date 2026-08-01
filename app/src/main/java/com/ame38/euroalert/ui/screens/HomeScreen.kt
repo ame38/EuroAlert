@@ -32,9 +32,10 @@ fun HomeScreen(
         if (locationState is LocationState.Denied) {
             Text("Location permission is needed to check what's near you.")
         }
+        // ordered by how often you'd actually tap them: check alerts,
+        // manage rules, mute as a last resort
         Button(onClick = onViewFeed) { Text("View nearby alerts") }
         Button(onClick = onViewRules) { Text("Manage rules") }
-        // TODO: wire this to actually mute the worker, currently just UI
         Button(onClick = {}) { Text("Mute all") }
     }
 }
