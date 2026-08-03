@@ -13,6 +13,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ame38.euroalert.ui.theme.Spacing
 import com.ame38.euroalert.rules.AlertRule
 import com.ame38.euroalert.Severity
 import java.util.UUID
@@ -27,7 +28,7 @@ fun RuleEditorScreen(onSave: (AlertRule) -> Unit) {
     var error by remember { mutableStateOf<String?>(null) }
     var saving by remember { mutableStateOf(false) }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(Spacing.medium)) {
         OutlinedTextField(value = name, onValueChange = { name = it }, label = { Text("Rule name") })
         OutlinedTextField(value = radius, onValueChange = { radius = it }, label = { Text("Radius (km)") })
         error?.let { Text(it) }
